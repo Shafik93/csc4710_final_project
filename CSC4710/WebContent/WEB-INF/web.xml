@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  <display-name>CSC4710 </display-name>
+  <servlet>
+    <description></description>
+    <display-name>UserServletRegister</display-name>
+    <servlet-name>UserServletRegister</servlet-name>
+    <servlet-class>user.web.servlet.UserServletRegister</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UserServletRegister</servlet-name>
+    <url-pattern>/UserServletRegister</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UserServletLogin</display-name>
+    <servlet-name>UserServletLogin</servlet-name>
+    <servlet-class>user.web.servlet.UserServletLogin</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UserServletLogin</servlet-name>
+    <url-pattern>/UserServletLogin</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>findAll</display-name>
+    <servlet-name>findAll</servlet-name>
+    <servlet-class>user.web.servlet.findAll</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>findAll</servlet-name>
+    <url-pattern>/findAll</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>PaperServlet</display-name>
+    <servlet-name>PaperServlet</servlet-name>
+    <servlet-class>user.web.servlet.PaperServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PaperServlet</servlet-name>
+    <url-pattern>/PaperServlet</url-pattern>
+  </servlet-mapping>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>login.jsp</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+</web-app>
