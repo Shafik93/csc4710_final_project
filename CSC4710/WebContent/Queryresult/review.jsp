@@ -17,6 +17,8 @@
 		<th>recommendation</th>
 		<th>paperid</th>
 		<th>email</th>
+		<th colspan=2>Action</th>
+		
 	</tr>
 	<c:forEach items="${ReviewList}" var="review">
 	<tr>
@@ -26,9 +28,11 @@
 		<td>${review.recommendation }</td>
 		<td>${review.paperid }</td>
 		<td>${review.email }</td>
-		
+		<td><a href="UserController?action=edit&userId=<c:out value="${user.userid}"/>">Update</a></td>
+        <td><a href="UserController?action=delete&userId=<c:out value="${user.userid}"/>">Delete</a></td>
 	</tr>
 </c:forEach>
 </table>
+ <p align="center"><a href="UserController?action=insert">Add Review</a></p>
 </body>
 </html>

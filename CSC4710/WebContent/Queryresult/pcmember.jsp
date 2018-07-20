@@ -14,14 +14,18 @@
 		<th>memberid</th>
 		<th>email</th>
 		<th>name</th>
+		<th colspan=2>Action</th>
 	</tr>
 	<c:forEach items="${PcMemberList}" var="member">
 	<tr>
 		<td>${member.memberid }</td>
 		<td>${member.email }</td>
 		<td>${member.name }</td>
+		<td><a href="UserController?action=edit&userId=<c:out value="${user.userid}"/>">Update</a></td>
+        <td><a href="UserController?action=delete&userId=<c:out value="${user.userid}"/>">Delete</a></td>
 	</tr>
 </c:forEach>
 </table>
+ <p align="center"><a href="UserController?action=insert">Add Pc Member</a></p>
 </body>
 </html>
