@@ -63,7 +63,7 @@ public class Sql extends HttpServlet {
 	 */
 	public void createTable() throws ClassNotFoundException, InstantiationException, IllegalAccessException {
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+			Class.forName(userdao.connector).newInstance();
 			Connection connect = DriverManager.getConnection(userdao.conInfo);
 			
 			//use database
@@ -289,7 +289,7 @@ public class Sql extends HttpServlet {
 	}
 	public void insertIntoUser(String username, String password, String email) throws InstantiationException, IllegalAccessException, ClassNotFoundException{
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+			Class.forName(userdao.connector).newInstance();
 			Connection connect = DriverManager.getConnection(userdao.conInfo);
 			
 			String sql = "INSERT INTO tb_user(username, password, email) VALUES(?,?,?)";
@@ -305,7 +305,7 @@ public class Sql extends HttpServlet {
 	}
 	public void insertIntoPaper(String title, String Abstract, String pdf ) throws InstantiationException, IllegalAccessException, ClassNotFoundException{
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+			Class.forName(userdao.connector).newInstance();
 			Connection connect = DriverManager.getConnection(userdao.conInfo);
 			
 			String sql = "INSERT INTO paper(title, abstract, pdf) VALUES(?,?,?)";
@@ -321,7 +321,7 @@ public class Sql extends HttpServlet {
 	}
 	public void insertIntoAuthor(String email, String firstname,String lastname, String affiliation ) throws InstantiationException, IllegalAccessException, ClassNotFoundException{
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+			Class.forName(userdao.connector).newInstance();
 			Connection connect = DriverManager.getConnection(userdao.conInfo);
 			
 			String sql = "INSERT INTO author(email, firstname, lastname, affiliation) VALUES(?,?,?,?)";
@@ -338,7 +338,7 @@ public class Sql extends HttpServlet {
 	}
 	public void insertIntoPcMember(String email, String name) throws InstantiationException, IllegalAccessException, ClassNotFoundException{
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+			Class.forName(userdao.connector).newInstance();
 			Connection connect = DriverManager.getConnection(userdao.conInfo);
 			
 			String sql = "INSERT INTO pcmember(email, name) VALUES(?,?)";
@@ -354,7 +354,7 @@ public class Sql extends HttpServlet {
 	
 	public void insertIntoReview(String sdate, String comment, String recommendation, int paperid, String email) throws InstantiationException, IllegalAccessException, ClassNotFoundException{
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+			Class.forName(userdao.connector).newInstance();
 			Connection connect = DriverManager.getConnection(userdao.conInfo);
 			
 			String sql = "INSERT INTO review(sdate, comment, recommendation, paperid, email) VALUES(?,?,?,?,?)";
@@ -373,7 +373,7 @@ public class Sql extends HttpServlet {
 	
 	public void insertIntoWritePaper(int paperid, String email, int ordersignificance) throws InstantiationException, IllegalAccessException, ClassNotFoundException{
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+			Class.forName(userdao.connector).newInstance();
 			Connection connect = DriverManager.getConnection(userdao.conInfo);
 			
 			String sql = "INSERT INTO writepaper(paperid, email, ordersignificance) VALUES(?,?,?)";

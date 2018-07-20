@@ -46,11 +46,13 @@ public class UserDao {
 	final public String conInfo = "jdbc:mysql://127.0.0.1:3306/sampledb?"
             + "user=root&password=root";
 	
+	final public String connector = "com.mysql.cj.jdbc.Driver";
+	
 	public Manager findByUsername1(String musername) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
 		Manager manager = new Manager();
 		try {
 			
-			Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+			Class.forName(connector).newInstance();
 			Connection connect = DriverManager.getConnection(conInfo);
 		    String sql = "select * from manager where managerusername=?";
 		    PreparedStatement preparestatement = connect.prepareStatement(sql); 
@@ -78,7 +80,7 @@ public class UserDao {
 		User user = new User();
 		try {
 			
-			Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+			Class.forName(connector).newInstance();
 			Connection connect = DriverManager.getConnection(conInfo);
 		    String sql = "select * from tb_user where username=?";
 		    PreparedStatement preparestatement = connect.prepareStatement(sql); 
@@ -114,7 +116,7 @@ public class UserDao {
 	 */
 	public void add(User user) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+			Class.forName(connector).newInstance();
 			Connection connect = DriverManager.getConnection(conInfo);
 			
 			
@@ -135,7 +137,7 @@ public class UserDao {
 	public List<Object> findall() throws InstantiationException, IllegalAccessException, ClassNotFoundException{
 		List<Object> list = new ArrayList<>();
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+			Class.forName(connector).newInstance();
 			Connection connect = DriverManager.getConnection(conInfo);
 			
 			
@@ -164,7 +166,7 @@ public class UserDao {
 	public List<Object> Authorfindall()throws InstantiationException, IllegalAccessException, ClassNotFoundException{
 		List<Object> list = new ArrayList<>();
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+			Class.forName(connector).newInstance();
 			Connection connect = DriverManager.getConnection(conInfo);
 			
 			
@@ -193,7 +195,7 @@ public class UserDao {
 	public List<Object> Paperfindall()throws InstantiationException, IllegalAccessException, ClassNotFoundException{
 		List<Object> list = new ArrayList<>();
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+			Class.forName(connector).newInstance();
 			Connection connect = DriverManager.getConnection(conInfo);
 			
 			
@@ -222,7 +224,7 @@ public class UserDao {
 	public List<Object> PcMemberfindall()throws InstantiationException, IllegalAccessException, ClassNotFoundException{
 		List<Object> list = new ArrayList<>();
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+			Class.forName(connector).newInstance();
 			Connection connect = DriverManager.getConnection(conInfo);
 			
 			
@@ -250,7 +252,7 @@ public class UserDao {
 	public List<Object> WritePaperfindall()throws InstantiationException, IllegalAccessException, ClassNotFoundException{
 		List<Object> list = new ArrayList<>();
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+			Class.forName(connector).newInstance();
 			Connection connect = DriverManager.getConnection(conInfo);
 			
 			
@@ -278,7 +280,7 @@ public class UserDao {
 	public List<Object> Reviewfindall()throws InstantiationException, IllegalAccessException, ClassNotFoundException{
 		List<Object> list = new ArrayList<>();
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+			Class.forName(connector).newInstance();
 			Connection connect = DriverManager.getConnection(conInfo);
 			
 			
