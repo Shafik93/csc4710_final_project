@@ -15,6 +15,7 @@
 		<th>title</th>
 		<th>abstract</th>
 		<th>pdf</th>
+		<th colspan=2>action</th>
 	</tr>
 	<c:forEach items="${requestScope.PaperList}" var="paper">
 	<tr>
@@ -22,8 +23,11 @@
 		<td>${paper.title}</td>
 		<td>${paper.abs}</td>
 		<td>${paper.pdf}</td>
+		<td><a href="UserController?action=edit&userId=<c:out value="${user.userid}"/>">Update</a></td>
+        <td><a href="UserController?action=delete&userId=<c:out value="${user.userid}"/>">Delete</a></td>
 	</tr>
 </c:forEach>
 </table>
+<p align="center"><a href="UserController?action=insert">Insert Paper</a></p>
 </body>
 </html>

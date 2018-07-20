@@ -42,7 +42,6 @@
 		 <a href="<c:url value='/findAll'/>" target="body">Please list all the user in the table</a><br>
  	<a href="<c:url value='/PaperServlet'/>" target="body">Please list all the paper in the table</a><br>
  	<a href="<c:url value='/AuthorServlet'/>" target="body">Please list all the author in the table</a><br>
-
  	<a href="<c:url value='/ReviewServlet'/>" target="body">Please list all the Review in the table</a><br>
  	<a href="<c:url value='/WritePaperServlet'/>" target="body">Please list all the Write Paper in the table</a><br>
  	<a href="<c:url value='/findAll'/>" target="body">Please list Pc Members who reviews the most</a><br>
