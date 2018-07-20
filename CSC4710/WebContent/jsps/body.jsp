@@ -22,7 +22,7 @@
   </head>
   
   <body>
-    <h1>Welcome to the conference!!</h1>
+    <h1>Welcome to The Conference</h1>
     <c:choose>
 		<c:when test="${empty sessionScope.session_user and empty sessionScope.session_manager}">
 			<form action="<c:url value='/Sql'/>" method = "post">
@@ -59,7 +59,7 @@
 		session.setAttribute("session_manager", null);
 	%>
 	<%
-		session.setAttribute("session_manager", null); 
+		session.setAttribute("session_user", null); 
 	%>
   </body>
 </html>
