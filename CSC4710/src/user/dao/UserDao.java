@@ -45,7 +45,9 @@ public class UserDao {
 	
 	final public String conInfo = "jdbc:mysql://127.0.0.1:3306/sampledb?"
             + "user=root&password=Shafiko93!";
+	
 	final public String connector = "com.mysql.cj.jdbc.Driver";
+	
 	public Manager findByUsername1(String musername) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
 		Manager manager = new Manager();
 		try {
