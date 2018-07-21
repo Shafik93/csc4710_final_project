@@ -44,7 +44,7 @@ public class UserDao {
 	 */
 	
 	final public String conInfo = "jdbc:mysql://127.0.0.1:3306/sampledb?"
-            + "user=root&password=root";
+            + "user=root&password=root!";
 	
 	final public String connector = "com.mysql.jdbc.Driver";
 	
