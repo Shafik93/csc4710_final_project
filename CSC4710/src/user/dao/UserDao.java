@@ -277,6 +277,7 @@ public class UserDao {
 	/**
 	 * get data from author 
 	 */
+	
 	public List<Object> Reviewfindall()throws InstantiationException, IllegalAccessException, ClassNotFoundException{
 		List<Object> list = new ArrayList<>();
 		try {
@@ -304,6 +305,115 @@ public class UserDao {
 		}
 		return list;
 	}
+	/**
+	 * Insert for Paper
+	 * @throws ClassNotFoundException 
+	 * @throws IllegalAccessException 
+	 * @throws InstantiationException 
+	 */
+	public void InsertPaper(Paper paper) throws InstantiationException, IllegalAccessException, ClassNotFoundException {
+        try {
+        	Class.forName(connector).newInstance();
+			Connection connect = DriverManager.getConnection(conInfo);
+			
+			
+			String sql = "insert into paper(paperid,title,abstract,pdf) values (?, ?, ?, ? )";
+			PreparedStatement preparestatement = connect.prepareStatement(sql); 
+			ResultSet resultSet = preparestatement.executeQuery();
+               
+            // Parameters start with 1
+            preparestatement.setInt(1, paper.getPaperid());
+            preparestatement.setString(2, paper.getTitle());
+            preparestatement.setString(3, paper.getAbs());
+            preparestatement.setString(4, paper.getPdf());
+            preparestatement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 	
+	/**
+	 * Insert for PcMember
+	 * @throws ClassNotFoundException 
+	 * @throws IllegalAccessException 
+	 * @throws InstantiationException 
+	 */
+	public void InsertPcMember(PcMember pcmember) throws InstantiationException, IllegalAccessException, ClassNotFoundException {
+        try {
+        	Class.forName(connector).newInstance();
+			Connection connect = DriverManager.getConnection(conInfo);
+			
+			
+			String sql = "insert into pcmember(memberid,email,name) values (?, ?, ? )";
+			PreparedStatement preparestatement = connect.prepareStatement(sql); 
+			ResultSet resultSet = preparestatement.executeQuery();
+               
+            // Parameters start with 1
+            preparestatement.setInt(1, pcmember.getMemberid());
+            preparestatement.setString(2, pcmember.getEmail());
+            preparestatement.setString(3, pcmember.getName());
+            preparestatement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 	
+	/**
+	 * Insert for Review
+	 * @throws ClassNotFoundException 
+	 * @throws IllegalAccessException 
+	 * @throws InstantiationException 
+	 */
+	public void InsertReview(Review review) throws InstantiationException, IllegalAccessException, ClassNotFoundException {
+        try {
+        	Class.forName(connector).newInstance();
+			Connection connect = DriverManager.getConnection(conInfo);
+			
+			
+			String sql = "insert into review(reporid,sdate,comment,recommendation,paperid,email) values (?, ?, ?, ?, ?, ? )";
+			PreparedStatement preparestatement = connect.prepareStatement(sql); 
+			ResultSet resultSet = preparestatement.executeQuery();
+               
+            // Parameters start with 1
+            preparestatement.setInt(1, review.getReportid());
+            preparestatement.setDate(2, java.sql.Date.valueOf(review.getSdate()));
+            preparestatement.setString(3, review.getComment());
+            preparestatement.setString(4, review.getRecommendation());
+            preparestatement.setInt(5, review.getPaperid());
+            preparestatement.setString(6, review.getEmail());
+            preparestatement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+	
+	/**
+	 * Delete for Review
+	 * @throws ClassNotFoundException 
+	 * @throws IllegalAccessException 
+	 * @throws InstantiationException 
+	 */
+	public void deleteReview(int reportid) throws InstantiationException, IllegalAccessException, ClassNotFoundException {
+        try {
+        	
+        	Class.forName(connector).newInstance();
+			Connection connect = DriverManager.getConnection(conInfo);
+			
+			
+			String sql = "Delete from Review where reportid=?";
+			PreparedStatement preparestatement = connect.prepareStatement(sql); 
+			ResultSet resultSet = preparestatement.executeQuery();
+         
+            
+            // Parameters start with 1
+            preparestatement.setInt(1, reportid);
+            preparestatement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
