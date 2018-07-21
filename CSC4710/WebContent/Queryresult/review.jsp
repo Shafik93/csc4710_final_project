@@ -28,8 +28,8 @@
 		<td>${review.recommendation }</td>
 		<td>${review.paperid }</td>
 		<td>${review.email }</td>
-		<td><a href="UserController?action=edit&userId=<c:out value="${user.userid}"/>">Update</a></td>
-        <td><a href="UserController?action=delete&userId=<c:out value="${user.userid}"/>">Delete</a></td>
+		<td><a href="UserController?action=edit&reportid=<c:out value="${review.reportid}"/>">Update</a></td>
+        <td><a href="UserController?action=delete&reportid=<c:out value="${review.reportid}"/>">Delete</a></td>
 	</tr>
 </c:forEach>
 </table>
