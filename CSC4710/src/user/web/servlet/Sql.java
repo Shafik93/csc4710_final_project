@@ -63,6 +63,7 @@ public class Sql extends HttpServlet {
 	 */
 	public void createTable() throws ClassNotFoundException, InstantiationException, IllegalAccessException {
 		try {
+	
 			Class.forName(userdao.connector).newInstance();
 			Connection connect = DriverManager.getConnection(userdao.conInfo);
 			
@@ -166,6 +167,7 @@ public class Sql extends HttpServlet {
 		    insertIntoPaper("database", "ch8","csc4710");
 		    insertIntoPaper("database", "ch9","csc4710");
 		    insertIntoPaper("database", "ch10","csc4710");
+		  
 
 
 		    
