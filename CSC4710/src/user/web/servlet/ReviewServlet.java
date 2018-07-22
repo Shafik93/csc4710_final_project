@@ -35,14 +35,17 @@ public class ReviewServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		
 		ReviewService reviewservice = new ReviewService();
-		try {			
+	
+			try {
 			request.setAttribute("ReviewList", reviewservice.Reviewfindall());
-			
-		} catch (InstantiationException | IllegalAccessException
+			}
+	
+		 catch (InstantiationException | IllegalAccessException
 				| ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	
 		try {
 			List<Object> li = reviewservice.Reviewfindall();
 			for(int i = 0; i < li.size();i++){
