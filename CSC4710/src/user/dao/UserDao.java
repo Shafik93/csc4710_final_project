@@ -44,9 +44,9 @@ public class UserDao {
 	 */
 	
 	final public String conInfo = "jdbc:mysql://127.0.0.1:3306/sampledb?"
-            + "user=root&password=Shafiko93!";
+            + "user=root&password=root";
 	
-	final public String connector = "com.mysql.cj.jdbc.Driver";
+	final public String connector = "com.mysql.jdbc.Driver";
 	
 	public Manager findByUsername1(String musername) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
 		Manager manager = new Manager();
@@ -317,8 +317,7 @@ public class UserDao {
 				Connection connect = DriverManager.getConnection(conInfo);
 				
 				String sql = "insert into users(memberid,email,name) values (?, ?, ? )";
-				PreparedStatement preparestatement = connect.prepareStatement(sql); 
-				ResultSet resultSet = preparestatement.executeQuery();
+				PreparedStatement preparestatement = connect.prepareStatement(sql);
 	           
 	            // Parameters start with 1
 	            preparestatement.setInt(1, pcmember.getMemberid());
@@ -331,12 +330,12 @@ public class UserDao {
 	        }
 	    }
 	
-	 /**
-	  * Insert for Paper
+	/**
+	 * Insert for Paper
 	 * @throws ClassNotFoundException 
 	 * @throws IllegalAccessException 
 	 * @throws InstantiationException 
-	  */
+	 */
 		 public void InsertPaper(Paper paper) throws InstantiationException, IllegalAccessException, ClassNotFoundException {
 		        try {
 		        	Class.forName(connector).newInstance();
@@ -344,7 +343,6 @@ public class UserDao {
 					
 					String sql = "insert into paper(paperid,title,abstract,pdf) values (?, ?, ?, ?)";
 					PreparedStatement preparestatement = connect.prepareStatement(sql); 
-					ResultSet resultSet = preparestatement.executeQuery();
 		           
 		            // Parameters start with 1
 		            preparestatement.setInt(1, paper.getPaperid());
@@ -358,12 +356,12 @@ public class UserDao {
 		        }
 		    }
 		 
-		 /**
-		  * Insert for Review
-		 * @throws ClassNotFoundException 
-		 * @throws IllegalAccessException 
-		 * @throws InstantiationException 
-		  */
+	/**
+	 * Insert for Review
+	 * @throws ClassNotFoundException 
+	 * @throws IllegalAccessException 
+	 * @throws InstantiationException 
+	 */
 			 public void InsertReview(Review review) throws InstantiationException, IllegalAccessException, ClassNotFoundException {
 			        try {
 			        	Class.forName(connector).newInstance();
@@ -371,7 +369,6 @@ public class UserDao {
 						
 						String sql = "insert into review(reportid,sdate,comment,recommendation,paperid,email) values (?, ?, ?, ?, ?, ?)";
 						PreparedStatement preparestatement = connect.prepareStatement(sql); 
-						ResultSet resultSet = preparestatement.executeQuery();
 			           
 			            // Parameters start with 1
 			            preparestatement.setInt(1, review.getReportid());
@@ -420,7 +417,6 @@ public class UserDao {
 			               Connection connect = DriverManager.getConnection(conInfo);
 			               String sql = "update pcmember set memberid=?, email=?, name=?";
 			               PreparedStatement preparestatement = connect.prepareStatement(sql);
-			               ResultSet resultSet = preparestatement.executeQuery();
 			   
 			            // Parameters start with 1
 			            preparestatement.setInt(1,pcmember.getMemberid());
@@ -445,7 +441,6 @@ public class UserDao {
 			                    Connection connect = DriverManager.getConnection(conInfo);
 			                    String sql = "update paper set paperid=?, title=?, abstract=?, pdf=?";
 			                    PreparedStatement preparestatement = connect.prepareStatement(sql);
-			                    ResultSet resultSet = preparestatement.executeQuery();
 			         
 			            // Parameters start with 1
 			            preparestatement.setInt(1,paper.getPaperid());
@@ -471,7 +466,6 @@ public class UserDao {
 			                       Connection connect = DriverManager.getConnection(conInfo);
 			                       String sql = "update review set reportid=?, sdate=?, comment=?, recommendation=?, paperid=?, email=?";
 			                       PreparedStatement preparestatement = connect.prepareStatement(sql);
-			                       ResultSet resultSet = preparestatement.executeQuery();
 			                                                               
 			               // Parameters start with 1
 			               preparestatement.setInt(1, review.getPaperid());
