@@ -23,11 +23,11 @@
 		<td>${paper.title}</td>
 		<td>${paper.abs}</td>
 		<td>${paper.pdf}</td>
-		<td><a href="UserController?action=edit&paperid=<c:out value="${paper.paperid}"/>">Update</a></td>
-        <td><a href="UserController?action=delete&paperid=<c:out value="${paper.paperid}"/>">Delete</a></td>
+		<td><a href="UserControllerPaper?action=edit&paperid=<c:out value="${paper.paperid}"/>">Update</a></td>
+        <td><a href="UserControllerPaper?action=delete&paperid=<c:out value="${paper.paperid}"/>">Delete</a></td>
 	</tr>
 </c:forEach>
 </table>
-<p align="center"><a href="UserController?action=insert">Insert Paper</a></p>
+<p align="center"><a href="UserControllerPaper?action=insert">Insert Paper</a></p>
 </body>
 </html>
