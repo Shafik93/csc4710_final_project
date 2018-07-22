@@ -21,11 +21,11 @@
 		<td>${member.memberid }</td>
 		<td>${member.email }</td>
 		<td>${member.name }</td>
-		<td><a href="UserController?action=edit&userId=<c:out value="${user.userid}"/>">Update</a></td>
-        <td><a href="UserController?action=delete&userId=<c:out value="${user.userid}"/>">Delete</a></td>
+		<td><a href="UserControllerPcMember?action=edit&memberid=<c:out value="${member.memberid}"/>">Update</a></td>
+        <td><a href="UserControllerPcMember?action=delete&memberid=<c:out value="${member.memberid}"/>">Delete</a></td>
 	</tr>
 </c:forEach>
 </table>
- <p align="center"><a href="UserController?action=insert">Add Pc Member</a></p>
+ <p align="center"><a href="UserControllerPcMember?action=insert">Add Pc Member</a></p>
 </body>
 </html>

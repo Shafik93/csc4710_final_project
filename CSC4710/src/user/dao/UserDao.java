@@ -359,13 +359,13 @@ public class UserDao {
             e.printStackTrace();
         }
     }
-	
-	/**
-	 * Insert for Review
+	 /**
+	 * Insert for review
 	 * @throws ClassNotFoundException 
 	 * @throws IllegalAccessException 
 	 * @throws InstantiationException 
 	 */
+
 	public void InsertReview(Review review) throws InstantiationException, IllegalAccessException, ClassNotFoundException {
         try {
         	Class.forName(connector).newInstance();
@@ -396,6 +396,7 @@ public class UserDao {
 	 * @throws IllegalAccessException 
 	 * @throws InstantiationException 
 	 */
+
 	public void deleteReview(int reportid) throws InstantiationException, IllegalAccessException, ClassNotFoundException {
         try {
         	
@@ -416,4 +417,126 @@ public class UserDao {
             e.printStackTrace();
         }
     }
+
+		 
+	  /**
+     * delete for paper
+     * @throws ClassNotFoundException
+     * @throws IllegalAccessException
+     * @throws InstantiationException
+     */
+             
+          public void deletePaper(int paperid) throws InstantiationException, IllegalAccessException, ClassNotFoundException {
+                      try {
+                             Class.forName(connector).newInstance();
+                             Connection connect = DriverManager.getConnection(conInfo);
+                             String sql = "delete from paper where paperid=?";
+                             PreparedStatement preparestatement = connect.prepareStatement(sql);
+          
+                             preparestatement.setInt(1, paperid);
+                             preparestatement.executeUpdate();
+
+                   } catch (SQLException e) {
+                          e.printStackTrace();
+                      		}
+                  }
+          /**
+	       * delete for pcmemebr
+	       * @throws ClassNotFoundException
+	       * @throws IllegalAccessException
+	       * @throws InstantiationException
+	       */
+	           public void deletePcmember(int memberid) throws InstantiationException, IllegalAccessException, ClassNotFoundException {
+	                        try {
+	                            Class.forName(connector).newInstance();
+	                            Connection connect = DriverManager.getConnection(conInfo);
+	                            String sql = "delete from pcmember where memberid=?";
+	                            PreparedStatement preparestatement = connect.prepareStatement(sql);
+	                          
+	                 // Parameters start with 1
+	                 preparestatement.setInt(1, memberid);
+	                 preparestatement.executeUpdate();
+	 
+	                    } catch (SQLException e) {
+	                            e.printStackTrace();
+	                    		}
+	                    }
+	
+		/**
+		 * Update for PcMemeber
+		 * @param pcmember
+		 * @throws InstantiationException
+		 * @throws IllegalAccessException
+		 * @throws ClassNotFoundException
+		 */
+			 public void updatePcmemebr(PcMember pcmember) throws InstantiationException, IllegalAccessException, ClassNotFoundException {
+			        try {
+			               Class.forName(connector).newInstance();
+			               Connection connect = DriverManager.getConnection(conInfo);
+			               String sql = "update pcmember set memberid=?, email=?, name=?";
+			               PreparedStatement preparestatement = connect.prepareStatement(sql);
+			   
+			            // Parameters start with 1
+			            preparestatement.setInt(1,pcmember.getMemberid());
+			            preparestatement.setString(2,pcmember.getEmail());
+			            preparestatement.setString(3,pcmember.getName());
+			            preparestatement.executeUpdate();
+			 
+			        } catch (SQLException e) {
+			            e.printStackTrace();
+			        }
+			    }
+		 /**
+		  * update for paper
+		  * @param user
+		  * @throws ClassNotFoundException
+		  * @throws IllegalAccessException
+		  * @throws InstantiationException
+		  */
+			   public void updatePapre(Paper paper) throws InstantiationException, IllegalAccessException, ClassNotFoundException {
+			        	try {
+			        			Class.forName(connector).newInstance();
+			                    Connection connect = DriverManager.getConnection(conInfo);
+			                    String sql = "update paper set paperid=?, title=?, abstract=?, pdf=?";
+			                    PreparedStatement preparestatement = connect.prepareStatement(sql);
+			         
+			            // Parameters start with 1
+			            preparestatement.setInt(1,paper.getPaperid());
+			            preparestatement.setString(2,paper.getTitle());
+			            preparestatement.setString(3,paper.getAbs());
+			            preparestatement.setString(4,paper.getPdf());
+			            preparestatement.executeUpdate();
+			 
+			        } catch (SQLException e) {
+			            e.printStackTrace();
+			        }
+			    }
+			 
+			   /**
+			    * update for review
+			    * @throws ClassNotFoundException
+			    * @throws IllegalAccessException
+			    * @throws InstantiationException
+			    */
+			   public void updateReview(Review review) throws InstantiationException, IllegalAccessException, ClassNotFoundException {
+				   try {
+					   Class.forName(connector).newInstance();
+					   Connection connect = DriverManager.getConnection(conInfo);
+					   String sql = "update review set reportid=?, sdate=?, comment=?, recommendation=?, paperid=?, email=?";
+					   PreparedStatement preparestatement = connect.prepareStatement(sql);
+					   
+					   // Parameters start with 1
+					   preparestatement.setInt(1, review.getPaperid());
+					   preparestatement.setDate(2, java.sql.Date.valueOf(review.getSdate()));
+					   preparestatement.setString(3, review.getComment());
+					   preparestatement.setString(4, review.getRecommendation());
+					   preparestatement.setInt(5, review.getPaperid());
+					   preparestatement.setString(6, review.getEmail());
+					   preparestatement.executeUpdate();
+
+				   } catch (SQLException e) {
+					   e.printStackTrace();
+				   }
+			   }
+			      
 }
