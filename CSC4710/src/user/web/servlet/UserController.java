@@ -21,14 +21,14 @@ public class UserController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static String INSERT_OR_EDIT = "/paperform.jsp";
     private static String LIST_USER = "/Queryresult/review.jsp";
-    private UserDao dao;
+    UserDao dao = new UserDao();
     /**
      * @see HttpServlet#HttpServlet()
      */
     public UserController() {
         super();
         // TODO Auto-generated constructor stub
-       UserDao dao = new UserDao();
+
     }
 
 	/**
@@ -46,13 +46,11 @@ public class UserController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String action  = request.getParameter("action");
-		String forward = "";
-		PaperService paperservice = new PaperService();
+		
 		if(action.equalsIgnoreCase("delete")){
 			int reportid = Integer.parseInt(request.getParameter("reportid"));
 			try {
-				dao.deletePaper(reportid);
-				forward = LIST_USER;
+				dao.deleteReview(reportid);
 				
 			} catch (InstantiationException | IllegalAccessException
 					| ClassNotFoundException e) {
@@ -60,7 +58,7 @@ public class UserController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		RequestDispatcher view = request.getRequestDispatcher(forward);
+		RequestDispatcher view = request.getRequestDispatcher("ReviewServlet");
 		view.forward(request, response);
 	}
 

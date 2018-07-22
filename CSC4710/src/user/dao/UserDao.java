@@ -44,9 +44,9 @@ public class UserDao {
 	 */
 	
 	final public String conInfo = "jdbc:mysql://127.0.0.1:3306/sampledb?"
-            + "user=root&password=Shafiko93!";
+            + "user=root&password=root";
 	
-	final public String connector = "com.mysql.cj.jdbc.Driver";
+	final public String connector = "com.mysql.jdbc.Driver";
 	
 	public Manager findByUsername1(String musername) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
 		Manager manager = new Manager();
@@ -396,10 +396,8 @@ public class UserDao {
 			        try {
 			        	Class.forName(connector).newInstance();
 						Connection connect = DriverManager.getConnection(conInfo);
-						
 						String sql = "Delete from Review where reportid=?";
 						PreparedStatement preparestatement = connect.prepareStatement(sql); 
-						ResultSet resultSet = preparestatement.executeQuery();
 					
 			            // Parameters start with 1
 			            preparestatement.setInt(1, reportid);
@@ -419,120 +417,117 @@ public class UserDao {
 			 public void updatePcmemebr(PcMember pcmember) throws InstantiationException, IllegalAccessException, ClassNotFoundException {
 			        try {
 			               Class.forName(connector).newInstance();
-			                                                Connection connect = DriverManager.getConnection(conInfo);
-			                                               
-			                                               
-			                                                String sql = "update pcmember set memberid=?, email=?, name=?";
-			                                                PreparedStatement preparestatement = connect.prepareStatement(sql);
-			                                                ResultSet resultSet = preparestatement.executeQuery();
+			               Connection connect = DriverManager.getConnection(conInfo);
+			               String sql = "update pcmember set memberid=?, email=?, name=?";
+			               PreparedStatement preparestatement = connect.prepareStatement(sql);
+			               ResultSet resultSet = preparestatement.executeQuery();
 			   
 			            // Parameters start with 1
-			                                                preparestatement.setInt(1,pcmember.getMemberid());
-			                                                preparestatement.setString(2,pcmember.getEmail());
-			                                                preparestatement.setString(3,pcmember.getName());
-			                                                preparestatement.executeUpdate();
+			            preparestatement.setInt(1,pcmember.getMemberid());
+			            preparestatement.setString(2,pcmember.getEmail());
+			            preparestatement.setString(3,pcmember.getName());
+			            preparestatement.executeUpdate();
 			 
 			        } catch (SQLException e) {
 			            e.printStackTrace();
 			        }
 			    }
-			                /**
-			                * update for paper
-			                * @param user
-			                * @throws ClassNotFoundException
-			                 * @throws IllegalAccessException
-			                 * @throws InstantiationException
-			                 */
-			                public void updatePapre(Paper paper) throws InstantiationException, IllegalAccessException, ClassNotFoundException {
-			        try {
-			               Class.forName(connector).newInstance();
-			                                                Connection connect = DriverManager.getConnection(conInfo);
-			                                                String sql = "update paper set paperid=?, title=?, abstract=?, pdf=?";
-			                                                PreparedStatement preparestatement = connect.prepareStatement(sql);
-			                                                ResultSet resultSet = preparestatement.executeQuery();
+		 /**
+		  * update for paper
+		  * @param user
+		  * @throws ClassNotFoundException
+		  * @throws IllegalAccessException
+		  * @throws InstantiationException
+		  */
+			   public void updatePapre(Paper paper) throws InstantiationException, IllegalAccessException, ClassNotFoundException {
+			        	try {
+			        			Class.forName(connector).newInstance();
+			                    Connection connect = DriverManager.getConnection(conInfo);
+			                    String sql = "update paper set paperid=?, title=?, abstract=?, pdf=?";
+			                    PreparedStatement preparestatement = connect.prepareStatement(sql);
+			                    ResultSet resultSet = preparestatement.executeQuery();
 			         
 			            // Parameters start with 1
-			                                                preparestatement.setInt(1,paper.getPaperid());
-			                                                preparestatement.setString(2,paper.getTitle());
-			                                                preparestatement.setString(3,paper.getAbs());
-			                                                preparestatement.setString(4,paper.getPdf());
-			                                                preparestatement.executeUpdate();
+			            preparestatement.setInt(1,paper.getPaperid());
+			            preparestatement.setString(2,paper.getTitle());
+			            preparestatement.setString(3,paper.getAbs());
+			            preparestatement.setString(4,paper.getPdf());
+			            preparestatement.executeUpdate();
 			 
 			        } catch (SQLException e) {
 			            e.printStackTrace();
 			        }
 			    }
 			 
-			                /**
-			                * update for review
-			                * @throws ClassNotFoundException
-			                 * @throws IllegalAccessException
-			                 * @throws InstantiationException
-			                 */
-			                public void updateReview(Review review) throws InstantiationException, IllegalAccessException, ClassNotFoundException {
-			                        try {
-			                               Class.forName(connector).newInstance();
-			                                                                Connection connect = DriverManager.getConnection(conInfo);
-			                                                                String sql = "update review set reportid=?, sdate=?, comment=?, recommendation=?, paperid=?, email=?";
-			                                                                PreparedStatement preparestatement = connect.prepareStatement(sql);
-			                                                                ResultSet resultSet = preparestatement.executeQuery();
+			   /**
+			    * update for review
+			    * @throws ClassNotFoundException
+			    * @throws IllegalAccessException
+			    * @throws InstantiationException
+			    */
+			        public void updateReview(Review review) throws InstantiationException, IllegalAccessException, ClassNotFoundException {
+			                try {
+			                       Class.forName(connector).newInstance();
+			                       Connection connect = DriverManager.getConnection(conInfo);
+			                       String sql = "update review set reportid=?, sdate=?, comment=?, recommendation=?, paperid=?, email=?";
+			                       PreparedStatement preparestatement = connect.prepareStatement(sql);
+			                       ResultSet resultSet = preparestatement.executeQuery();
 			                                                               
-			                            // Parameters start with 1
-			                                                                preparestatement.setInt(1, review.getPaperid());
-			                                                                preparestatement.setDate(2, java.sql.Date.valueOf(review.getSdate()));
-			                                                                preparestatement.setString(3, review.getComment());
-			                                                                preparestatement.setString(4, review.getRecommendation());
-			                            preparestatement.setInt(5, review.getPaperid());
-			                            preparestatement.setString(6, review.getEmail());
-			                            preparestatement.executeUpdate();
+			               // Parameters start with 1
+			               preparestatement.setInt(1, review.getPaperid());
+			               preparestatement.setDate(2, java.sql.Date.valueOf(review.getSdate()));
+			               preparestatement.setString(3, review.getComment());
+			               preparestatement.setString(4, review.getRecommendation());
+			               preparestatement.setInt(5, review.getPaperid());
+			               preparestatement.setString(6, review.getEmail());
+			               preparestatement.executeUpdate();
 			 
-			                        } catch (SQLException e) {
-			                            e.printStackTrace();
-			                        }
-			                    }
-			                /**
-			                  * delete for pcmemebr
-			                * @throws ClassNotFoundException
-			                 * @throws IllegalAccessException
-			                 * @throws InstantiationException
-			                  */
-			               
-			                 public void deletePcmemer(int memberid) throws InstantiationException, IllegalAccessException, ClassNotFoundException {
+			             } catch (SQLException e) {
+			                   e.printStackTrace();
+			                }
+			            }
+			      /**
+			       * delete for pcmemebr
+			       * @throws ClassNotFoundException
+			       * @throws IllegalAccessException
+			       * @throws InstantiationException
+			       */
+			           public void deletePcmemer(int memberid) throws InstantiationException, IllegalAccessException, ClassNotFoundException {
 			                        try {
 			                            Class.forName(connector).newInstance();
-			                                                                Connection connect = DriverManager.getConnection(conInfo);
-			                                                                String sql = "delete from pcmember where memberid=?";
-			                                                                PreparedStatement preparestatement = connect.prepareStatement(sql);
-			                                                                ResultSet resultSet = preparestatement.executeQuery();       
-			                            // Parameters start with 1
-			                                                                preparestatement.setInt(1, memberid);
-			                                                                preparestatement.executeUpdate();
+			                            Connection connect = DriverManager.getConnection(conInfo);
+			                            String sql = "delete from pcmember where memberid=?";
+			                            PreparedStatement preparestatement = connect.prepareStatement(sql);
+			                            ResultSet resultSet = preparestatement.executeQuery();       
+			                 // Parameters start with 1
+			                 preparestatement.setInt(1, memberid);
+			                 preparestatement.executeUpdate();
 			 
-			                        } catch (SQLException e) {
+			                    } catch (SQLException e) {
 			                            e.printStackTrace();
-			                        }
+			                    		}
 			                    }
 			 
-			                /**
-			                  * delete for paper
-			                * @throws ClassNotFoundException
-			                 * @throws IllegalAccessException
-			                 * @throws InstantiationException
-			                  */
+			      /**
+			       * delete for paper
+			       * @throws ClassNotFoundException
+			       * @throws IllegalAccessException
+			       * @throws InstantiationException
+			       */
 			               
-			                 public void deletePaper(int paperid) throws InstantiationException, IllegalAccessException, ClassNotFoundException {
+			            public void deletePaper(int paperid) throws InstantiationException, IllegalAccessException, ClassNotFoundException {
 			                        try {
 			                               Class.forName(connector).newInstance();
-			                                                                Connection connect = DriverManager.getConnection(conInfo);
-			                                                                String sql = "delete from paper where paperid=?";
-			                                                                PreparedStatement preparestatement = connect.prepareStatement(sql);
-			                                                                ResultSet resultSet = preparestatement.executeQuery();  
-			                                                                preparestatement.setInt(1, paperid);
-			                                                                preparestatement.executeUpdate();
+			                               Connection connect = DriverManager.getConnection(conInfo);
+			                               String sql = "delete from paper where paperid=?";
+			                               PreparedStatement preparestatement = connect.prepareStatement(sql);
+			                               ResultSet resultSet = preparestatement.executeQuery();  
+			                               preparestatement.setInt(1, paperid);
+			                               preparestatement.executeUpdate();
 			 
-			                        } catch (SQLException e) {
+			                     } catch (SQLException e) {
 			                            e.printStackTrace();
-			                        }
+			                        		}
 			                    }
 			 
 }
