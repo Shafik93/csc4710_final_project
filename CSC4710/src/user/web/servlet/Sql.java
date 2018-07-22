@@ -201,8 +201,8 @@ public class Sql extends HttpServlet {
 					+ "email VARCHAR(50),"
 					+ "ordersignificance INT,"
 					+ "PRIMARY KEY(paperid, email),"
-					+ "FOREIGN KEY (paperid) REFERENCES paper(paperid),"
-					+ "FOREIGN KEY (email) REFERENCES author(email));";
+					+ "FOREIGN KEY (paperid) REFERENCES paper(paperid)ON DELETE CASCADE,"
+					+ "FOREIGN KEY (email) REFERENCES author(email)ON DELETE CASCADE);";
 			PreparedStatement createTableWritePaper = connect.prepareStatement(sql5); 
 			createTableWritePaper.executeUpdate();
 			//tuples
@@ -249,8 +249,8 @@ public class Sql extends HttpServlet {
 		    		+ "email VARCHAR(100),"
 		    		+ "PRIMARY KEY(reportid),"
 		    		+ "UNIQUE(paperid, email),"
-		    		+ "FOREIGN KEY (paperid) REFERENCES paper(paperid),"
-		    		+ "FOREIGN KEY (email) REFERENCES pcmember(email));";
+		    		+ "FOREIGN KEY (paperid) REFERENCES paper(paperid)ON DELETE CASCADE,"
+		    		+ "FOREIGN KEY (email) REFERENCES pcmember(email)ON DELETE CASCADE);";
 			PreparedStatement createTableReview = connect.prepareStatement(sql7); 
 			createTableReview.executeUpdate();
 			//tuples
