@@ -492,13 +492,13 @@ public class UserDao {
 			       * @throws IllegalAccessException
 			       * @throws InstantiationException
 			       */
-			           public void deletePcmemer(int memberid) throws InstantiationException, IllegalAccessException, ClassNotFoundException {
+			           public void deletePcmember(int memberid) throws InstantiationException, IllegalAccessException, ClassNotFoundException {
 			                        try {
 			                            Class.forName(connector).newInstance();
 			                            Connection connect = DriverManager.getConnection(conInfo);
 			                            String sql = "delete from pcmember where memberid=?";
 			                            PreparedStatement preparestatement = connect.prepareStatement(sql);
-			                            ResultSet resultSet = preparestatement.executeQuery();       
+			                          
 			                 // Parameters start with 1
 			                 preparestatement.setInt(1, memberid);
 			                 preparestatement.executeUpdate();
@@ -521,7 +521,7 @@ public class UserDao {
 			                               Connection connect = DriverManager.getConnection(conInfo);
 			                               String sql = "delete from paper where paperid=?";
 			                               PreparedStatement preparestatement = connect.prepareStatement(sql);
-			                               ResultSet resultSet = preparestatement.executeQuery();  
+			            
 			                               preparestatement.setInt(1, paperid);
 			                               preparestatement.executeUpdate();
 			 
