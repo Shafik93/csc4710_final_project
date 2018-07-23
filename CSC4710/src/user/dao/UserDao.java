@@ -45,9 +45,9 @@ public class UserDao {
 	 */
 	
 	final public String conInfo = "jdbc:mysql://127.0.0.1:3306/sampledb?"
-            + "user=root&password=root";
+            + "user=root&password=Shafiko93!";
 	
-	final public String connector = "com.mysql.jdbc.Driver";
+	final public String connector = "com.mysql.cj.jdbc.Driver";
 	
 	public Manager findByUsername1(String musername) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
 		Manager manager = new Manager();
@@ -343,14 +343,14 @@ public class UserDao {
 		        	Class.forName(connector).newInstance();
 					Connection connect = DriverManager.getConnection(conInfo);
 					
-					String sql = "insert into paper(paperid,title,abstract,pdf) values (?, ?, ?, ?)";
+					String sql = "insert into paper(title,abstract,pdf) values (?, ?, ?)";
 					PreparedStatement preparestatement = connect.prepareStatement(sql); 
 				
 		           
 		            // Parameters start with 1
-		            preparestatement.setInt(1, paper.getPaperid());
-		            preparestatement.setString(2, paper.getTitle());
-		            preparestatement.setString(3, paper.getAbs());
+		           
+		            preparestatement.setString(1, paper.getTitle());
+		            preparestatement.setString(2, paper.getAbs());
 		            preparestatement.setString(3, paper.getPdf());
 		            preparestatement.executeUpdate();
 
@@ -471,17 +471,17 @@ public class UserDao {
 			                try {
 			                       Class.forName(connector).newInstance();
 			                       Connection connect = DriverManager.getConnection(conInfo);
-			                       String sql = "update review set sdate=?, comment=?, recommendation=?, paperid=?, email=? where reportid=?";
+			                       String sql = "update review set comment=?, recommendation=?, paperid=?, email=? where reportid=?";
 			                       PreparedStatement preparestatement = connect.prepareStatement(sql);
 			                     
 			                                                               
 			               // Parameters start with 1
-			               preparestatement.setDate(1, new java.sql.Date(review.getSdate().getTime()));
-			               preparestatement.setString(2, review.getComment());
-			               preparestatement.setString(3, review.getRecommendation());
-			               preparestatement.setInt(4, review.getPaperid());
-			               preparestatement.setString(5, review.getEmail());
-			               preparestatement.setInt(6, review.getReportid());
+			             
+			               preparestatement.setString(1, review.getComment());
+			               preparestatement.setString(2, review.getRecommendation());
+			               preparestatement.setInt(3, review.getPaperid());
+			               preparestatement.setString(4, review.getEmail());
+			               preparestatement.setInt(5, review.getReportid());
 			               preparestatement.executeUpdate();
 			 
 			             } catch (SQLException e) {

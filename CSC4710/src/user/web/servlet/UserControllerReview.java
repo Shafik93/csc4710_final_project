@@ -2,10 +2,14 @@ package user.web.servlet;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -29,7 +33,7 @@ public class UserControllerReview extends HttpServlet {
 	private static String reviewserv = "ReviewServlet";
 	private static String reviewform = "/Queryresult/reviewform.jsp";
     UserDao dao = new UserDao();
-    private static int p = 0;
+    private static int pr = 0;
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -77,7 +81,7 @@ public class UserControllerReview extends HttpServlet {
 	}
 
 	/**
-	 * Delete for Review
+	 *
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 *
 	 */
@@ -85,8 +89,8 @@ public class UserControllerReview extends HttpServlet {
 		// TODO Auto-generated method stub
 		if(request.getParameter("frmsub") != null){
 			Review review = new Review();
-			review.setReportid(p);
-            review.setSdate(request.getParameter("sdate"));
+			review.setReportid(pr);
+
             review.setComment(request.getParameter("comment"));
             review.setRecommendation(request.getParameter("recommendation"));
             review.setPaperid(Integer.parseInt(request.getParameter("paperid")));
@@ -117,12 +121,12 @@ public Review findallByid(int reportid) throws InstantiationException, IllegalAc
 
             if (rs.next()) {
                 review.setReportid(rs.getInt("reportid"));
-                review.setSdate(rs.getString("sdate"));
+                review.setSdate(rs.getDate("sdate"));
                 review.setComment(rs.getString("comment"));
                 review.setRecommendation(rs.getString("recommendation"));
                 review.setPaperid(rs.getInt("paperid"));
                 review.setEmail(rs.getString("email"));
-                p = rs.getInt("reportid");
+                pr = rs.getInt("reportid");
             }
         } catch (SQLException e) {
             e.printStackTrace();
