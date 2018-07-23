@@ -15,6 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 
 
 
+
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -30,7 +32,10 @@ public class UserControllerPaper extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static String paperserv = "PaperServlet";
 	private static String paperform = "/Queryresult/paperform.jsp";
+	private static String paperinsert = "/Queryresult/paperinsert.jsp";
+
 	UserDao dao = new UserDao();
+	Sql sql = new Sql();
     private static int p =0;
     /**
      * @see HttpServlet#HttpServlet()
@@ -71,6 +76,10 @@ public class UserControllerPaper extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
+		else if(action.equalsIgnoreCase("insert")){
+			
+			forward = paperinsert;
+		}
 	
 		RequestDispatcher view = request.getRequestDispatcher(forward);
 		view.forward(request, response);
@@ -98,6 +107,22 @@ public class UserControllerPaper extends HttpServlet {
 		}
 		RequestDispatcher view = request.getRequestDispatcher(paperserv);
 		view.forward(request, response);
+		}
+		else if(request.getParameter("frminsert") != null){
+			Paper paper1 = new Paper();
+			System.out.println(request.getParameter("title"));
+			paper1.setTitle(request.getParameter("title"));
+			paper1.setAbs(request.getParameter("abstract"));
+			paper1.setPdf(request.getParameter("pdf"));
+			try {
+				dao.InsertPaper(paper1);
+			} catch (InstantiationException | IllegalAccessException
+					| ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			RequestDispatcher view = request.getRequestDispatcher(paperserv);
+			view.forward(request, response);
 		}
 	}
 	public Paper findallByid(int paperid) throws InstantiationException, IllegalAccessException, ClassNotFoundException{

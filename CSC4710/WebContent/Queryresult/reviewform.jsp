@@ -11,7 +11,6 @@
 <form action="UserControllerReview" method ="post">
 
     <input type="hidden" name="method" value="login"/>
-		Date :	<input type="text" name="date" value="${review.sdate}" /><br/>
 		Comment :	<input type="text" name="comment"  value="${review.comment}" /><br/>
 		Recommendation :	<input type="text" name="recommendation"  value="${review.recommendation}" /><br/>
 		PaperId :	<input type="text" name="paperid" value="${review.paperid}" /><br/>
