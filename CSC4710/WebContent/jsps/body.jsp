@@ -62,7 +62,7 @@
 			<input type="submit" value="Submit"/>
 		</form>
 		
-		<p>To assign at most 3 reviewers to a Paper: </p>
+		<p>To assign at most three reviewers to a Paper: </p>
 		<form action="<c:url value='/WritePaperServlet'/>" method="post">
 			<label> Email 1: </label>
 			<input type="text" name="email1" value = ""/>
