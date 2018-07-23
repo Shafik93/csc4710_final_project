@@ -5,7 +5,7 @@ import java.sql.Date;
 public class Review {
 	
 	private int reportid;
-	private String sdate;
+	private Date sdate;
 	private String comment;
 	private String recommendation;
 	private int paperid;
@@ -19,11 +19,11 @@ public class Review {
 		this.reportid = reportid;
 	}
 	
-	public String getSdate(){
+	public Date getSdate(){
 		return sdate;
 	}
 	
-	public void setSdate(String sdate){
+	public void setSdate(Date sdate){
 		this.sdate = sdate;
 	}
 	

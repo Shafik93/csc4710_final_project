@@ -45,9 +45,9 @@ public class UserDao {
 	 */
 	
 	final public String conInfo = "jdbc:mysql://127.0.0.1:3306/sampledb?"
-            + "user=root&password=Shafiko93!";
+            + "user=root&password=root";
 	
-	final public String connector = "com.mysql.cj.jdbc.Driver";
+	final public String connector = "com.mysql.jdbc.Driver";
 	
 	public Manager findByUsername1(String musername) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
 		Manager manager = new Manager();
@@ -296,7 +296,7 @@ public class UserDao {
 	    		review.setReportid(resultSet.getInt("reportid"));
 	    		review.setRecommendation(resultSet.getString("recommendation"));
 	    		review.setPaperid(resultSet.getInt("paperid"));
-	    		review.setSdate(resultSet.getString("sdate"));
+	    		review.setSdate(resultSet.getDate("sdate"));
 	    		list.add(review);
 			 }
 			 
@@ -376,7 +376,7 @@ public class UserDao {
 			           
 			            // Parameters start with 1
 			            preparestatement.setInt(1, review.getReportid());
-			            preparestatement.setDate(2, java.sql.Date.valueOf(review.getSdate()));
+			            preparestatement.setDate(2, new java.sql.Date(review.getSdate().getTime()));
 			            preparestatement.setString(3, review.getComment());
 			            preparestatement.setString(4, review.getRecommendation());
 			            preparestatement.setInt(5, review.getPaperid());
@@ -415,18 +415,18 @@ public class UserDao {
 		 * @throws IllegalAccessException
 		 * @throws ClassNotFoundException
 		 */
-			 public void updatePcmemebr(PcMember pcmember) throws InstantiationException, IllegalAccessException, ClassNotFoundException {
+			 public void updatePcmember(PcMember pcmember) throws InstantiationException, IllegalAccessException, ClassNotFoundException {
 			        try {
 			               Class.forName(connector).newInstance();
 			               Connection connect = DriverManager.getConnection(conInfo);
-			               String sql = "update pcmember set memberid=?, email=?, name=?";
+			               String sql = "update pcmember set email=?, name=? where memberid=?";
 			               PreparedStatement preparestatement = connect.prepareStatement(sql);
 			              
 			   
 			            // Parameters start with 1
-			            preparestatement.setInt(1,pcmember.getMemberid());
-			            preparestatement.setString(2,pcmember.getEmail());
-			            preparestatement.setString(3,pcmember.getName());
+			            preparestatement.setString(1,pcmember.getEmail());
+			            preparestatement.setString(2,pcmember.getName());
+			            preparestatement.setInt(3,pcmember.getMemberid());
 			            preparestatement.executeUpdate();
 			 
 			        } catch (SQLException e) {
@@ -471,17 +471,17 @@ public class UserDao {
 			                try {
 			                       Class.forName(connector).newInstance();
 			                       Connection connect = DriverManager.getConnection(conInfo);
-			                       String sql = "update review set reportid=?, sdate=?, comment=?, recommendation=?, paperid=?, email=?";
+			                       String sql = "update review set sdate=?, comment=?, recommendation=?, paperid=?, email=? where reportid=?";
 			                       PreparedStatement preparestatement = connect.prepareStatement(sql);
 			                     
 			                                                               
 			               // Parameters start with 1
-			               preparestatement.setInt(1, review.getPaperid());
-			               preparestatement.setDate(2, java.sql.Date.valueOf(review.getSdate()));
-			               preparestatement.setString(3, review.getComment());
-			               preparestatement.setString(4, review.getRecommendation());
-			               preparestatement.setInt(5, review.getPaperid());
-			               preparestatement.setString(6, review.getEmail());
+			               preparestatement.setDate(1, new java.sql.Date(review.getSdate().getTime()));
+			               preparestatement.setString(2, review.getComment());
+			               preparestatement.setString(3, review.getRecommendation());
+			               preparestatement.setInt(4, review.getPaperid());
+			               preparestatement.setString(5, review.getEmail());
+			               preparestatement.setInt(6, review.getReportid());
 			               preparestatement.executeUpdate();
 			 
 			             } catch (SQLException e) {
