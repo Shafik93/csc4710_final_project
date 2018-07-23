@@ -45,9 +45,9 @@ public class UserDao {
 	 */
 	
 	final public String conInfo = "jdbc:mysql://127.0.0.1:3306/sampledb?"
-            + "user=root&password=Shafiko93!";
+            + "user=root&password=root";
 	
-	final public String connector = "com.mysql.cj.jdbc.Driver";
+	final public String connector = "com.mysql.jdbc.Driver";
 	
 	public Manager findByUsername1(String musername) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
 		Manager manager = new Manager();
@@ -317,14 +317,13 @@ public class UserDao {
 	        	Class.forName(connector).newInstance();
 				Connection connect = DriverManager.getConnection(conInfo);
 				
-				String sql = "insert into users(memberid,email,name) values (?, ?, ? )";
+				String sql = "insert into pcmember(email,name) values (?, ? )";
 				PreparedStatement preparestatement = connect.prepareStatement(sql); 
 			
 	           
 	            // Parameters start with 1
-	            preparestatement.setInt(1, pcmember.getMemberid());
-	            preparestatement.setString(2, pcmember.getEmail());
-	            preparestatement.setString(3, pcmember.getName());
+	            preparestatement.setString(1, pcmember.getEmail());
+	            preparestatement.setString(2, pcmember.getName());
 	            preparestatement.executeUpdate();
 
 	        } catch (SQLException e) {
@@ -376,7 +375,7 @@ public class UserDao {
 			           
 			            // Parameters start with 1
 			            preparestatement.setInt(1, review.getReportid());
-			            preparestatement.setDate(2, new java.sql.Date(review.getSdate().getTime()));
+			            preparestatement.setString(2, "curdate()");
 			            preparestatement.setString(3, review.getComment());
 			            preparestatement.setString(4, review.getRecommendation());
 			            preparestatement.setInt(5, review.getPaperid());
