@@ -31,12 +31,21 @@
  			</form>		
 		</c:when>
 		<c:when test="${not empty sessionScope.session_user and empty sessionScope.session_manager}">
-		  	<p>Find all papers by author's last name</p>
+		
+		  	<p>Find all papers by author's last name as single authors:</p>
 		<form action="<c:url value='/AuthorServlet'/>" method="post">
 			<input type="hidden" name="method" value="login"/>
 				Last Name：	<input type="text" name="lastname" /><br/>
 			<input type="submit" value="Submit"/>
 		</form>
+		
+			<p>Find all papers in which Author is listed as first:</p>
+		<form action="<c:url value='/AuthorServlet'/>" method="post">
+			<input type="hidden" name="method" value="login"/>
+				Last Name：	<input type="text" name="lastname" /><br/>
+			<input type="submit" value="Submit" name = "firstAuthor"/>
+		</form>
+		
 		  	<p>Find all coauthored papers by two authors' last names</p>
 		<form action="<c:url value='/AuthorServlet'/>" method="post">
 			<input type="hidden" name="method" value="login"/>
@@ -52,6 +61,30 @@
 				First Name 2：	<input type="text" name="lastname" /><br/>
 			<input type="submit" value="Submit"/>
 		</form>
+		
+		<p>To assign at most 3 reviewers to a Paper: </p>
+		<form action="<c:url value='/WritePaperServlet'/>" method="post">
+			<label> Email 1: </label>
+			<input type="text" name="email1" value = ""/>
+			<label> Member 1: </label>
+			<input type="text" name="member" value = ""/>
+			<br>
+			<label> Email 2: </label>
+			<input type="text" name="email2" value = ""/>
+			<label> Member 2: </label>
+			<input type="text" name="member2" value = ""/>
+			<br>
+			<label> Email 3: </label>
+			<input type="text" name="email3" value = ""/>
+			<label> Member 3: </label>
+			<input type="text" name="member3" value = ""/>
+			<br>
+			<label>Paper Id: </label>
+			<input type = "text" name = "paperid" value = ""/>
+			<br>
+			<input type="submit" value="Submit"/>
+		</form>
+		
 		</c:when>
 	
 	</c:choose>
