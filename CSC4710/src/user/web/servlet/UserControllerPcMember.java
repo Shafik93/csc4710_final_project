@@ -26,7 +26,10 @@ public class UserControllerPcMember extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static String pcmemberserv = "PcMemberServlet";
 	private static String pcmemberform = "/Queryresult/pcmemberform.jsp";
+	private static String pcmemberinsert = "/Queryresult/pcmemberinsert.jsp";
+	
 	UserDao dao = new UserDao();
+	Sql sql = new Sql();
 	private static int pc =0;
     /**
      * @see HttpServlet#HttpServlet()
@@ -41,7 +44,6 @@ public class UserControllerPcMember extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doPost(request,response);
 		String action  = request.getParameter("action");
 		String forward ="";
 		
@@ -68,9 +70,14 @@ public class UserControllerPcMember extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
+		else if(action.equalsIgnoreCase("insert")){
+			
+			forward = pcmemberinsert;
+		}
 	
 		RequestDispatcher view = request.getRequestDispatcher(forward);
 		view.forward(request, response);
+	
 	}
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
@@ -94,6 +101,21 @@ public class UserControllerPcMember extends HttpServlet {
 		RequestDispatcher view = request.getRequestDispatcher(pcmemberserv);
 		view.forward(request, response);
 		}
+		else if(request.getParameter("frminsertpc") != null){
+			PcMember pcm1 = new PcMember();
+			pcm1.setEmail(request.getParameter("email"));
+			pcm1.setName(request.getParameter("name"));
+			try {
+				dao.InsertPcMember(pcm1);
+			} catch (InstantiationException | IllegalAccessException
+					| ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			RequestDispatcher view = request.getRequestDispatcher(pcmemberserv);
+			view.forward(request, response);
+		}
+		
 	}
 	public PcMember findallByid(int memberid) throws InstantiationException, IllegalAccessException, ClassNotFoundException{
 		

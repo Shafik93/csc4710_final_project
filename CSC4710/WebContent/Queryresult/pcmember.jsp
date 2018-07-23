@@ -26,6 +26,6 @@
 	</tr>
 </c:forEach>
 </table>
- <p align="center"><a href="UserControllerPcMember?action=insert">Add Pc Member</a></p>
+ <p align="center"><a href="UserControllerPcMember?action=insert">Insert Pc Member</a></p>
 </body>
 </html>
