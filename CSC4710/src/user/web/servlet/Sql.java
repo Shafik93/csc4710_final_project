@@ -187,10 +187,10 @@ public class Sql extends HttpServlet {
 			insertIntoAuthor("mike4@gmail.com", "mike4","diaz","eng");
 			insertIntoAuthor("mike5@gmail.com", "mike5","fields","csc");
 			insertIntoAuthor("mike6@gmail.com", "mike6","snay","eng");
-			insertIntoAuthor("mike7@gmail.com", "mike7","carter","eng");
+			insertIntoAuthor("mike7@gmail.com", "mike7","zhang","eng");
 			insertIntoAuthor("mike8@gmail.com", "mike8","bazi","csc");
 			insertIntoAuthor("mike9@gmail.com", "mike9","nuzha","eng");
-			insertIntoAuthor("mike10@gmail.com", "mike10","ataya","csc");
+			insertIntoAuthor("mike10@gmail.com", "mike10","lu","csc");
 			
 
 			
@@ -206,7 +206,7 @@ public class Sql extends HttpServlet {
 			PreparedStatement createTableWritePaper = connect.prepareStatement(sql5); 
 			createTableWritePaper.executeUpdate();
 			//tuples
-			insertIntoWritePaper(1, "mike1@gmail.com", 1);
+			insertIntoWritePaper(1, "mike10@gmail.com", 1);
 			insertIntoWritePaper(2, "mike2@gmail.com", 2);
 			insertIntoWritePaper(3, "mike1@gmail.com", 6);
 			insertIntoWritePaper(4, "mike3@gmail.com", 4);
@@ -214,8 +214,9 @@ public class Sql extends HttpServlet {
 			insertIntoWritePaper(6, "mike6@gmail.com", 1);
 			insertIntoWritePaper(7, "mike8@gmail.com", 8);
 			insertIntoWritePaper(8, "mike9@gmail.com", 7);
-			insertIntoWritePaper(9, "mike10@gmail.com", 9);
-			insertIntoWritePaper(10, "mike10@gmail.com", 2);
+			insertIntoWritePaper(9, "mike1@gmail.com", 9);
+			insertIntoWritePaper(10, "mike10@gmail.com", 1);
+			insertIntoWritePaper(1, "mike7@gmail.com", 2);
 
 			 //create pcmember
 			String sql6 = "CREATE TABLE pcmember"
@@ -227,8 +228,8 @@ public class Sql extends HttpServlet {
 			PreparedStatement createTablePcmember = connect.prepareStatement(sql6); 
 			createTablePcmember.executeUpdate();
 			//tuples
-			insertIntoPcMember("dave1@gmail.com","dave1");
-			insertIntoPcMember("dave2@gmail.com","dave2");
+			insertIntoPcMember("dave1@gmail.com","matt");
+			insertIntoPcMember("dave2@gmail.com","john");
 			insertIntoPcMember("dave3@gmail.com","dave3");
 			insertIntoPcMember("dave4@gmail.com","dave4");
 			insertIntoPcMember("dave5@gmail.com","dave5");
@@ -254,12 +255,12 @@ public class Sql extends HttpServlet {
 			PreparedStatement createTableReview = connect.prepareStatement(sql7); 
 			createTableReview.executeUpdate();
 			//tuples
-			insertIntoReview("2018-06-01", "like it", "y", 1, "dave1@gmail.com");
-			insertIntoReview("2018-06-02", "like it", "y", 2, "dave2@gmail.com");
-			insertIntoReview("2018-06-03", "like it", "n", 3, "dave3@gmail.com");
+			insertIntoReview("2018-06-01", "like it", "n", 1, "dave1@gmail.com");
+			insertIntoReview("2018-06-02", "like it", "n", 2, "dave2@gmail.com");
+			insertIntoReview("2018-06-03", "like it", "n", 2, "dave1@gmail.com");
 			insertIntoReview("2018-06-04", "like it", "y", 4, "dave4@gmail.com");
-			insertIntoReview("2018-06-05", "like it", "n", 5, "dave5@gmail.com");
-			insertIntoReview("2018-06-06", "like it", "n", 6, "dave6@gmail.com");
+			insertIntoReview("2018-06-05", "like it", "n", 5, "dave1@gmail.com");
+			insertIntoReview("2018-06-06", "like it", "n", 5, "dave2@gmail.com");
 			insertIntoReview("2018-06-07", "like it", "n", 7, "dave7@gmail.com");
 			insertIntoReview("2018-06-08", "like it", "y", 8, "dave8@gmail.com");
 			insertIntoReview("2018-06-09", "like it", "y", 9, "dave9@gmail.com");

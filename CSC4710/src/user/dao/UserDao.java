@@ -45,9 +45,9 @@ public class UserDao {
 	 */
 	
 	final public String conInfo = "jdbc:mysql://127.0.0.1:3306/sampledb?"
-            + "user=root&password=Shafiko93!";
+            + "user=root&password=root";
 	
-	final public String connector = "com.mysql.cj.jdbc.Driver";
+	final public String connector = "com.mysql.jdbc.Driver";
 	
 	public Manager findByUsername1(String musername) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
 		Manager manager = new Manager();
@@ -530,5 +530,136 @@ public class UserDao {
 			                            e.printStackTrace();
 			                        		}
 			                    }
+			            
+			            /**
+			        	 * Get single author from paper 
+			        	 */
+			       
+			        	public List<Object> singleAuthor(String author)throws InstantiationException, IllegalAccessException, ClassNotFoundException{
+			        		List<Object> list = new ArrayList<>();
+			        		try {
+			        			Class.forName(connector).newInstance();
+			        			Connection connect = DriverManager.getConnection(conInfo);
+			        			
+			        			
+			        			String sql = ("Select * from paper where paperid in (select paperid from writepaper where email in (select email from author where lastname = ?) and paperid not in (select paperid from writepaper where email <> (select email from author where lastname=?)))");
+			        			
+			        			PreparedStatement preparestatement = connect.prepareStatement(sql); 
+			        			 preparestatement.setString(1, author);
+			        			 preparestatement.setString(2, author);
+			        			 
+			        			 ResultSet resultSet = preparestatement.executeQuery();
+			        			 
+			        			 while(resultSet.next()){
+			        				 Paper paper = new Paper();
+			        		    		paper.setPaperid(resultSet.getInt("paperid"));
+			        		    		paper.setTitle(resultSet.getString("title"));
+			        		    		paper.setAbs(resultSet.getString("abstract"));
+			        		    		paper.setPdf(resultSet.getString("pdf"));
+			        		    		list.add(paper);
+			        				 }
+			        		} catch(SQLException e) {
+			        			throw new RuntimeException(e);
+			        		}
+			        		return list;
+			        	}
+			        	/**
+			        	 * Get author as significance 1 
+			        	 */
+			       
+			        	public List<Object> sigOne(String author)throws InstantiationException, IllegalAccessException, ClassNotFoundException{
+			        		List<Object> list = new ArrayList<>();
+			        		try {
+			        			Class.forName(connector).newInstance();
+			        			Connection connect = DriverManager.getConnection(conInfo);
+			        			
+			        			
+			        			String sql = ("Select * from paper where paperid in (select paperid from writepaper where email = (select  email from author where lastname = ?) and ordersignificance=1)");
+			        			
+			        			PreparedStatement preparestatement = connect.prepareStatement(sql); 
+			        			 preparestatement.setString(1, author);
+			       
+			        			 
+			        			 ResultSet resultSet = preparestatement.executeQuery();
+			        			 
+			        			 while(resultSet.next()){
+			        				 Paper paper = new Paper();
+			        		    		paper.setPaperid(resultSet.getInt("paperid"));
+			        		    		paper.setTitle(resultSet.getString("title"));
+			        		    		paper.setAbs(resultSet.getString("abstract"));
+			        		    		paper.setPdf(resultSet.getString("pdf"));
+			        		    		list.add(paper);
+			        				 }
+			        		} catch(SQLException e) {
+			        			throw new RuntimeException(e);
+			        		}
+			        		return list;
+			        	}
+			        	
+			        	/**
+			        	 * Get coauthor 
+			        	 */
+			       
+			        	public List<Object> CoAuthor(String author1, String author2)throws InstantiationException, IllegalAccessException, ClassNotFoundException{
+			        		List<Object> list = new ArrayList<>();
+			        		try {
+			        			Class.forName(connector).newInstance();
+			        			Connection connect = DriverManager.getConnection(conInfo);
+			        			
+			        			
+			        			String sql = ("Select * from paper where paperid in (select paperid from writepaper where email = (select  email from author where lastname = ?)) and paperid in (select paperid from writepaper where email = (select email from author where lastname = ?))");
+			        			PreparedStatement preparestatement = connect.prepareStatement(sql); 
+			        			 preparestatement.setString(1, author1);
+			        			 preparestatement.setString(2, author2);
+			       
+			        			 
+			        			 ResultSet resultSet = preparestatement.executeQuery();
+			        			 
+			        			 while(resultSet.next()){
+			        				 Paper paper = new Paper();
+			        		    		paper.setPaperid(resultSet.getInt("paperid"));
+			        		    		paper.setTitle(resultSet.getString("title"));
+			        		    		paper.setAbs(resultSet.getString("abstract"));
+			        		    		paper.setPdf(resultSet.getString("pdf"));
+			        		    		list.add(paper);
+			        				 }
+			        		} catch(SQLException e) {
+			        			throw new RuntimeException(e);
+			        		}
+			        		return list;
+			        	}
+			        	/**
+			        	 * Get reject by 2 
+			        	 */
+			       
+			        	public List<Object> Rejected(String pcmem1, String pcmem2)throws InstantiationException, IllegalAccessException, ClassNotFoundException{
+			        		List<Object> list = new ArrayList<>();
+			        		try {
+			        			Class.forName(connector).newInstance();
+			        			Connection connect = DriverManager.getConnection(conInfo);
+			        			
+			        			
+			        			String sql = ("select * from paper where paperid = (select paperid from review where email = (select email from pcmember where name=? and recommendation = 'n') and paperid in (select paperid from review where email = (select email from pcmember where name = ? and recommendation = 'n')))");
+			        			PreparedStatement preparestatement = connect.prepareStatement(sql); 
+			        			 preparestatement.setString(1, pcmem1);
+			        			 preparestatement.setString(2, pcmem2);
+			       
+			        			 
+			        			 ResultSet resultSet = preparestatement.executeQuery();
+			        			 
+			        			 while(resultSet.next()){
+			        				 Paper paper = new Paper();
+			        		    		paper.setPaperid(resultSet.getInt("paperid"));
+			        		    		paper.setTitle(resultSet.getString("title"));
+			        		    		paper.setAbs(resultSet.getString("abstract"));
+			        		    		paper.setPdf(resultSet.getString("pdf"));
+			        		    		list.add(paper);
+			        				 }
+			        		} catch(SQLException e) {
+			        			throw new RuntimeException(e);
+			        		}
+			        		return list;
+			        	}
+			        	
 			 
 }

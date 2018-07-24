@@ -9,34 +9,45 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import user.service.AuthorService;
-import user.domain.Author;
+import user.dao.UserDao;
 
 /**
- * Servlet implementation class AuthorServlet
+ * Servlet implementation class SignificanceServlet
  */
-@WebServlet("/AuthorServlet")
-public class AuthorServlet extends HttpServlet {
+@WebServlet("/SignificanceServlet")
+public class SignificanceServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	UserDao dao = new UserDao();
     
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public SignificanceServlet() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+	
 		doPost(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		AuthorService authorservice = new AuthorService();
-		try {			
-			request.setAttribute("AuthorList", authorservice.Authorfindall());
+		String author = "";
+		author = request.getParameter("significance");
+		
+			
+		try {
+			request.setAttribute("SignificanceList", dao.sigOne(author));
 			
 		} catch (InstantiationException | IllegalAccessException
 				| ClassNotFoundException e) {
@@ -44,7 +55,7 @@ public class AuthorServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		try {
-			List<Object> li = authorservice.Authorfindall();
+			List<Object> li = dao.sigOne(author);
 			for(int i = 0; i < li.size();i++){
 				System.out.println(li.get(i).toString());
 			}
@@ -54,8 +65,9 @@ public class AuthorServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
-		request.getRequestDispatcher("/Queryresult/author.jsp").forward(request, response);
+
+	
+		request.getRequestDispatcher("/Queryresult/significance.jsp").forward(request, response);
 	}
+
 }

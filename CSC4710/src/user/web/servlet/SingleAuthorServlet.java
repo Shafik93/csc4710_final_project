@@ -9,19 +9,26 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import user.service.AuthorService;
+import user.dao.UserDao;
 import user.domain.Author;
+import user.service.PaperService;
 
 /**
- * Servlet implementation class AuthorServlet
+ * Servlet implementation class SingleAuthorServlet
  */
-@WebServlet("/AuthorServlet")
-public class AuthorServlet extends HttpServlet {
+@WebServlet("/SingleAuthorServlet")
+public class SingleAuthorServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	UserDao dao = new UserDao();
        
-    
-
-	/**
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public SingleAuthorServlet() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+    /**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -34,9 +41,12 @@ public class AuthorServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		AuthorService authorservice = new AuthorService();
-		try {			
-			request.setAttribute("AuthorList", authorservice.Authorfindall());
+		String author = "";
+		author = request.getParameter("authorname");
+		
+			
+		try {
+			request.setAttribute("SingleAuthorList", dao.singleAuthor(author));
 			
 		} catch (InstantiationException | IllegalAccessException
 				| ClassNotFoundException e) {
@@ -44,7 +54,7 @@ public class AuthorServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		try {
-			List<Object> li = authorservice.Authorfindall();
+			List<Object> li = dao.singleAuthor(author);
 			for(int i = 0; i < li.size();i++){
 				System.out.println(li.get(i).toString());
 			}
@@ -54,8 +64,10 @@ public class AuthorServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
-		request.getRequestDispatcher("/Queryresult/author.jsp").forward(request, response);
+
+	
+		request.getRequestDispatcher("/Queryresult/singleauthor.jsp").forward(request, response);
 	}
 }
+
+
