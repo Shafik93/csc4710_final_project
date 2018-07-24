@@ -5,24 +5,26 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 </head>
 <body>
-<h3 align="center"> Accepted Papers Table </h3>
-<table border="1" width="70%" align="center">
+<h3 align="center"> Pc Member With No Assigned Papers Table </h3>
+	<table border="1" width="70%" align="center">
 	<tr>
-		<th>paper_id</th>
-		<th>title</th>
-		<th>abstract</th>
-		<th>pdf</th>
+		<th>memberid</th>
+		<th>email</th>
+		<th>name</th>
+		
 	</tr>
-	<c:forEach items ="${requestScope.AcceptedpapersList}" var="actpaper">
+	<c:forEach items="${noassignedpaper}" var="noassigned">
 	<tr>
-		<td>${actpaper.paperid}</td>
-		<td>${actpaper.title}</td>
-		<td>${actpaper.abs}</td>
-		<td>${actpaper.pdf}</td>
+		<td>${noassigned.memberid }</td>
+		<td>${noassigned.email }</td>
+		<td>${noassigned.name }</td>
+		
 	</tr>
 </c:forEach>
 </table>
+
 </body>
 </html>

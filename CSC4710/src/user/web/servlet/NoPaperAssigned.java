@@ -1,12 +1,6 @@
 package user.web.servlet;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -16,21 +10,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import user.dao.UserDao;
-import user.domain.Paper;
-import user.service.PaperService;
 
 /**
- * Servlet implementation class AcceptedPapers
+ * Servlet implementation class NoPaperAssigned
  */
-@WebServlet("/AcceptedPapers")
-public class AcceptedPapers extends HttpServlet {
+@WebServlet("/NoPaperAssigned")
+public class NoPaperAssigned extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	UserDao dao = new UserDao();
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AcceptedPapers() {
+    public NoPaperAssigned() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -49,7 +41,7 @@ public class AcceptedPapers extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		try {			
-			request.setAttribute("AcceptedpapersList", dao.Acceptedpaper());
+			request.setAttribute("noassignedpaper", dao.nopaper());
 			
 		} catch (InstantiationException | IllegalAccessException
 				| ClassNotFoundException e) {
@@ -57,7 +49,7 @@ public class AcceptedPapers extends HttpServlet {
 			e.printStackTrace();
 		}
 		try {
-			List<Object> li = dao.Acceptedpaper();
+			List<Object> li = dao.nopaper();
 			for(int i = 0; i < li.size();i++){
 				System.out.println(li.get(i).toString());
 			}
@@ -69,9 +61,8 @@ public class AcceptedPapers extends HttpServlet {
 		}
 		
 		
-		request.getRequestDispatcher("/Queryresult/acceptedpaper.jsp").forward(request, response);
+		request.getRequestDispatcher("/Queryresult/nopaperassigned.jsp").forward(request, response);
 	
 	}
-	
 
 }
