@@ -84,11 +84,6 @@
 		</c:when>
 	
 	</c:choose>
-    <%
-		session.setAttribute("session_manager", null);
-	%>
-	<%
-		session.setAttribute("session_user", null); 
-	%>
+   
   </body>
 </html>
