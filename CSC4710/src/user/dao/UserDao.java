@@ -639,7 +639,7 @@ public class UserDao {
 			        			Connection connect = DriverManager.getConnection(conInfo);
 			        			
 			        			
-			        			String sql = ("select * from paper where paperid = (select paperid from review where email = (select email from pcmember where name=? and recommendation = 'n') and paperid in (select paperid from review where email = (select email from pcmember where name = ? and recommendation = 'n')))");
+			        			String sql = ("select paperid, title from paper where paperid = (select paperid from review where email = (select email from pcmember where name=? and recommendation = 'n') and paperid in (select paperid from review where email = (select email from pcmember where name = ? and recommendation = 'n')))");
 			        			PreparedStatement preparestatement = connect.prepareStatement(sql); 
 			        			 preparestatement.setString(1, pcmem1);
 			        			 preparestatement.setString(2, pcmem2);
