@@ -45,9 +45,9 @@ public class UserDao {
 	 */
 	
 	final public String conInfo = "jdbc:mysql://127.0.0.1:3306/sampledb?"
-            + "user=root&password=root";
+            + "user=root&password=Shafiko93!";
 	
-	final public String connector = "com.mysql.jdbc.Driver";
+	final public String connector = "com.mysql.cj.jdbc.Driver";
 	
 	public Manager findByUsername1(String musername) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
 		Manager manager = new Manager();
@@ -375,7 +375,7 @@ public class UserDao {
 			           
 			            // Parameters start with 1
 			         
-			            preparestatement.setString(1, "curdate()");
+			            preparestatement.setDate(1, review.getSdate());
 			            preparestatement.setString(2, review.getComment());
 			            preparestatement.setString(3, review.getRecommendation());
 			            preparestatement.setInt(4, review.getPaperid());

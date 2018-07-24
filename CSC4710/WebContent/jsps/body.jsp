@@ -63,26 +63,22 @@
 		</form>
 		
 		<p>To assign at most three reviewers to a Paper: </p>
-		<form action="<c:url value='/WritePaperServlet'/>" method="post">
+		<form action="<c:url value='/Reviewers'/>" method="post">
 			<label> Email 1: </label>
 			<input type="text" name="email1" value = ""/>
-			<label> Member 1: </label>
-			<input type="text" name="member" value = ""/>
 			<br>
+			
 			<label> Email 2: </label>
 			<input type="text" name="email2" value = ""/>
-			<label> Member 2: </label>
-			<input type="text" name="member2" value = ""/>
+			
 			<br>
 			<label> Email 3: </label>
 			<input type="text" name="email3" value = ""/>
-			<label> Member 3: </label>
-			<input type="text" name="member3" value = ""/>
 			<br>
 			<label>Paper Id: </label>
 			<input type = "text" name = "paperid" value = ""/>
 			<br>
-			<input type="submit" value="Submit"/>
+			<input type="submit" value="Submit" name ="sbtrv" />
 		</form>
 		
 		</c:when>
