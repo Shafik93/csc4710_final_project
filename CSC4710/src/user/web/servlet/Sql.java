@@ -110,7 +110,10 @@ public class Sql extends HttpServlet {
 		    PreparedStatement dropPaperTable = connect.prepareStatement(drop3);
 		    dropPaperTable.executeUpdate();
 
-		    
+		    //drop accepted
+		    String drop8 = "DROP VIEW IF EXISTS accepted;";
+		    PreparedStatement dropAccepted = connect.prepareStatement(drop8);
+		    dropAccepted.executeUpdate();
 		    
 		    //create tb_user
 		    String sql2 = "CREATE TABLE tb_user "
@@ -264,6 +267,15 @@ public class Sql extends HttpServlet {
 			insertIntoReview("2018-06-08", "like it", "y", 8, "dave8@gmail.com");
 			insertIntoReview("2018-06-09", "like it", "y", 9, "dave9@gmail.com");
 			insertIntoReview("2018-06-10", "like it", "y", 10, "dave10@gmail.com");
+			
+			 //create view accepted
+		    String view = "CREATE VIEW accepted AS "
+		    		+"SELECT * , count(recommendation) AS accept "
+		    		+"FROM review "
+		    		+"WHERE recommendation ='y' "
+		    		+"GROUP BY paperid";
+		    PreparedStatement createView = connect.prepareStatement(view); 
+		    createView.executeUpdate();
 			
 		} catch(SQLException e) {
 			throw new RuntimeException(e);

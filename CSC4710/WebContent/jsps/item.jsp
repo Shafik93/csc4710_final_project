@@ -34,10 +34,10 @@
  	<a href="<c:url value='/ReviewServlet'/>" target="body">Please list all the Review in the table</a><br>
  	<a href="<c:url value='/WritePaperServlet'/>" target="body">Please list all the Write Paper in the table</a><br>
  	<a href="<c:url value='/findAll'/>" target="body">Please list Pc Members who reviews the most</a><br>
- 	<a href="<c:url value='/findAll'/>" target="body">Please list Pc Members who doesn't have reviews</a><br>
-  <a href="<c:url value='/findAll'/>" target="body">Please list all accepted papers</a>&nbsp;&nbsp;
+ 	<a href="<c:url value='/NoPaperAssigned'/>" target="body">Please list Pc Members who doesn't have reviews</a><br>
+  <a href="<c:url value='/AcceptedPapers'/>" target="body">Please list all accepted papers</a>&nbsp;&nbsp;
     	</c:when>
-    	<c:otherwise>
+    <c:when test="${not empty sessionScope.session_manager and  empty sessionScope.session_user}">
 	<a href="<c:url value='/findAll'/>" target="body">Please list all the user in the table</a><br>
  	<a href="<c:url value='/PaperServlet'/>" target="body">Please list all the paper in the table</a><br>
   <a href="<c:url value='/PcMemberServlet'/>" target="body">Please list all the Pc Member in the table</a><br>
@@ -45,9 +45,10 @@
  	<a href="<c:url value='/ReviewServlet'/>" target="body">Please list all the Review in the table</a><br>
  	<a href="<c:url value='/WritePaperServlet'/>" target="body">Please list all the Write Paper in the table</a><br>
  	<a href="<c:url value='/findAll'/>" target="body">Please list Pc Members who reviews the most</a><br>
- 	<a href="<c:url value='/findAll'/>" target="body">Please list Pc Members who doesn't have reviews</a><br>
-  <a href="<c:url value='/findAll'/>" target="body">Please list all accepted papers</a>&nbsp;&nbsp;	
-		</c:otherwise>
+ 	<a href="<c:url value='/NoPaperAssigned'/>" target="body">Please list Pc Members who doesn't have reviews</a><br>
+  <a href="<c:url value='/AcceptedPapers'/>" target="body">Please list all accepted papers</a>&nbsp;&nbsp;	
+		</c:when>
 	</c:choose>
+	 
   </body>
 </html>

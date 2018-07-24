@@ -530,5 +530,73 @@ public class UserDao {
 			                            e.printStackTrace();
 			                        		}
 			                    }
-			 
+			            /**
+			             * find accepted paperss
+			             * @return
+			             * @throws InstantiationException
+			             * @throws IllegalAccessException
+			             * @throws ClassNotFoundException
+			             */
+			            public List<Object> Acceptedpaper()throws InstantiationException, IllegalAccessException, ClassNotFoundException{
+			        		List<Object> list = new ArrayList<>();
+			        		try {
+			        			Class.forName(connector).newInstance();
+			        			Connection connect = DriverManager.getConnection(conInfo);
+			        			
+			        			
+			        			String sql = "SELECT p.paperid, p.title, p.abstract, p.pdf "
+			        						+"FROM accepted a,paper p "
+			        						+"WHERE a.accept >1 "
+			        						+"AND a.paperid = p.paperid";
+			        			PreparedStatement preparestatement = connect.prepareStatement(sql); 
+			        			ResultSet resultSet = preparestatement.executeQuery();
+			        			
+			        			while(resultSet.next()){
+			        				Paper paper1 = new Paper();
+			        	    		paper1.setPaperid(resultSet.getInt("paperid"));
+			        	    		paper1.setTitle(resultSet.getString("title"));
+			        	    		paper1.setAbs(resultSet.getString("abstract"));
+			        	    		paper1.setPdf(resultSet.getString("pdf"));
+			        	    		list.add(paper1);
+			        			 }
+			        			
+			        		} catch(SQLException e) {
+			        			throw new RuntimeException(e);
+			        		}
+			        		return list;
+			        	}
+			            /**
+			             * list pcmemebers with no assigned papers
+			             * @return
+			             * @throws InstantiationException
+			             * @throws IllegalAccessException
+			             * @throws ClassNotFoundException
+			             */
+			            public List<Object> nopaper()throws InstantiationException, IllegalAccessException, ClassNotFoundException{
+			        		List<Object> list = new ArrayList<>();
+			        		try {
+			        			Class.forName(connector).newInstance();
+			        			Connection connect = DriverManager.getConnection(conInfo);
+			        			
+			        			
+			        			String sql = "SELECT * "
+			        					+"FROM pcmember p "
+			        					+"WHERE p.email NOT "
+			        					+"IN(SELECT r.email FROM review r)";
+			        			PreparedStatement preparestatement = connect.prepareStatement(sql); 
+			        			ResultSet resultSet = preparestatement.executeQuery();
+			        			
+			        			while(resultSet.next()){
+			        				PcMember pcmember1 = new PcMember();
+			        				pcmember1.setMemberid(resultSet.getInt("memberid"));
+			        	    		pcmember1.setEmail(resultSet.getString("email"));
+			        	    		pcmember1.setName(resultSet.getString("name"));
+			        	    		list.add(pcmember1);
+			        			 }
+			        			
+			        		} catch(SQLException e) {
+			        			throw new RuntimeException(e);
+			        		}
+			        		return list;
+			        	}
 }
