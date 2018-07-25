@@ -32,33 +32,32 @@
 		</c:when>
 		<c:when test="${not empty sessionScope.session_user and empty sessionScope.session_manager}">
 		
-		  	<p>Find all papers by author's last name as single authors:</p>
-		<form action="<c:url value='/AuthorServlet'/>" method="post">
-			<input type="hidden" name="method" value="login"/>
-				Last Name：	<input type="text" name="lastname" /><br/>
-			<input type="submit" value="Submit"/>
+		  <p>Find all papers by author's last name as single authors:</p>
+		<form action="<c:url value='/SingleAuthorServlet'/>" method="post">
+				Last Name：	<input type="text" name="authorname" /><br/>
+			<input type="submit" value="Submit" name= "subauthor"/>
 		</form>
 		
 			<p>Find all papers in which Author is listed as first:</p>
-		<form action="<c:url value='/AuthorServlet'/>" method="post">
-			<input type="hidden" name="method" value="login"/>
-				Last Name：	<input type="text" name="lastname" /><br/>
-			<input type="submit" value="Submit" name = "firstAuthor"/>
+		<form action="<c:url value='/SignificanceServlet'/>" method="post">
+			
+				Last Name：	<input type="text" name="significance" /><br/>
+		<input type="submit" value="Submit" name = "firstAuthor"/>
 		</form>
 		
 		  	<p>Find all coauthored papers by two authors' last names</p>
-		<form action="<c:url value='/AuthorServlet'/>" method="post">
+		<form action="<c:url value='/CoauthorServlet'/>" method="post">
 			<input type="hidden" name="method" value="login"/>
-				Author 1 Last Name：	<input type="text" name="lastname" /><br/>
-				Author 2 Last Name：	<input type="text" name="lastname" /><br/>
+				Author 1 Last Name：	<input type="text" name="author1" /><br/>
+				Author 2 Last Name：	<input type="text" name="author2" /><br/>
 			<input type="submit" value="Submit"/>
 		
 		</form>
 			<p>Find all papers rejected by both Pc Members</p>
-		<form action="<c:url value='/AuthorServlet'/>" method="post">
+		<form action="<c:url value='/RejectedServlet'/>" method="post">
 			<input type="hidden" name="method" value="login"/>
-				First Name 1：	<input type="text" name="lastname" /><br/>
-				First Name 2：	<input type="text" name="lastname" /><br/>
+				First Name 1：	<input type="text" name="pcmem1" /><br/>
+				First Name 2：	<input type="text" name="pcmem2" /><br/>
 			<input type="submit" value="Submit"/>
 		</form>
 		

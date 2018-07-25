@@ -49,6 +49,7 @@
   <a href="<c:url value='/AcceptedPapers'/>" target="body">Please list all accepted papers</a>&nbsp;&nbsp;	
 		</c:when>
 	</c:choose>
-	 
+	 <%session.setAttribute("session_manager", null); %>
+	 <%session.setAttribute("session_user", null); %>
   </body>
 </html>
